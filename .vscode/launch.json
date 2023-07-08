@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-NotifyApplication<notify>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.notification.notify.NotifyApplication",
+            "projectName": "notify",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
