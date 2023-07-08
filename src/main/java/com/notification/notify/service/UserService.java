@@ -102,6 +102,15 @@ public class UserService {
         }
     }
 
+    /**
+     * Retrives a list of user IDs for all connected users from the map of users
+     * connections.
+     * 
+     * @param shouldPing Determines whether to ping all connected users before
+     *                   retriving the list.
+     *                   Set to true if pinging is required, Otherwise false.
+     * @return The list of user IDs for all connected users.
+     */
     public List<String> getAllConnectedUsers(Boolean shouldPing) {
         if (shouldPing) {
             pingAllConnectedUsers();
@@ -109,11 +118,32 @@ public class UserService {
         return new ArrayList<>(sseConnections.keySet());
     }
 
+    /**
+     * Retrives a list of user IDs for all connected users except the given user ID
+     * from the map of users
+     * connections.
+     * 
+     * @param userId     The user ID to be exclude from the list of all connected
+     *                   user IDs.
+     * @param shouldPing Determines whether to ping all connected users before
+     *                   retriving the list.
+     *                   Set to true if pinging is required, Otherwise false.
+     * @return The list of user IDs for all connected users except the given user
+     *         ID.
+     */
     public List<String> getAllConnectedUsersExcept(String userId, Boolean shouldPing) {
         List<String> allUsers = getAllConnectedUsers(shouldPing);
         return allUsers.stream().filter(e -> !e.equals(userId)).toList();
     }
 
+    /**
+     * Notifies a user upon a successful connection.
+     * 
+     * Additionally, It sends a list of all other connected users.
+     * 
+     * @param emitter The {@code SseEmitter} object connected to the client.
+     * @param userId  The user ID of connected user.
+     */
     public void sendSuccessfulConnectionNotification(SseEmitter emitter, String userId) {
         List<String> allUsers = getAllConnectedUsersExcept(userId, true);
         SuccessfulConnectionEvent event = new SuccessfulConnectionEvent(allUsers);

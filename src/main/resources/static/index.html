@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification</title>
+
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
+    <script src="./script.js" defer></script>
+    
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="sidebar">
+            <div id="before-connect-group">
+                <div class="form-group">
+                    <label for="userName">User Name:</label>
+                    <input type="text" class="form-control" id="userName" name="userName" required>
+                    <div class="invalid-feedback" id="userNameError">
+                        This field is required.
+                    </div>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="connect()">Connect</button>
+            </div>
+            <div id="after-connect-group">
+                <div class="form-group">
+                    <label for="userName">User Name:</label>
+                    <input type="text" class="form-control" id="userNameReadOnly" name="userName" disabled>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="disconnect()">Disconnect</button>
+
+                <div class="container" id="all-users-list-container">
+                    <h3 id="all-users-list-heading"></h3>
+                    <div id="all-users-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container right-container">
+            <img src="./dog.svg">
+            <div class="toast-stack" id="toast-stack"></div>
+        </div>
+    </div>
+</body>
+
+</html>
